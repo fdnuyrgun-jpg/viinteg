@@ -25,3 +25,20 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Supabase
+supabase/.branches/
+supabase/.temp/
+
+# Build outputs
+dist/
+.turbo
+.next
+out
+
+# IDE/Editor
+.eslintcache
+
+# OS
+Thumbs.db
+*.pem

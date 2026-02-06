@@ -13,9 +13,7 @@ export default tseslint.config(
     extends: [
       js.configs.recommended,
       ...tseslint.configs.recommended,
-      ...tseslint.configs.stylistic, // Добавляет приятные правила оформления
-      react.configs.recommended,
-      react.configs["jsx-runtime"],
+      ...tseslint.configs.stylistic,
     ],
     languageOptions: {
       ecmaVersion: "latest",
@@ -26,22 +24,20 @@ export default tseslint.config(
         ...globals.es2021,
       },
       parserOptions: {
-        project: ["./tsconfig.json", "./tsconfig.node.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-    settings: {
-      react: {
-        version: "detect",
+        ecmaFeatures: {
+          jsx: true,
+        },
       },
     },
     plugins: {
+      react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
     },
     rules: {
       // React Hooks
-      ...reactHooks.configs.recommended.rules,
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
       
       // React Refresh для Fast Refresh
       "react-refresh/only-export-components": [
@@ -59,7 +55,8 @@ export default tseslint.config(
       // React специфичные
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-      "react/display-name": "off", // Часто мешает при использовании forwardRef в shadcn
+      "react/display-name": "off",
+      "react/jsx-uses-react": "off",
       
       // Общие улучшения
       "no-console": ["warn", { allow: ["warn", "error"] }],
